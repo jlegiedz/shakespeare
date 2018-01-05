@@ -7,15 +7,15 @@ public class BookReader {
 
     public static void main(String[] args) throws Exception {
 
-        File file = new File("/Users/asia/Desktop/try.txt");
+        File file = new File("/Users/asia/Desktop/szekspir.txt");
 
         Scanner scanner = new Scanner(file);
 
         Map<String, Integer> szekspirWords = new HashMap<>();
 
-        while (scanner.hasNextLine()) {
-            String input = scanner.next();
-            String word = input.toLowerCase();
+        while (scanner.hasNext()) {
+            scanner.useDelimiter("\\W+");
+            String word = scanner.next().toLowerCase();
             Integer count = szekspirWords.get(word);
 
             if (count == null) {
@@ -23,7 +23,6 @@ public class BookReader {
             } else {
                 szekspirWords.put(word, count + 1);
             }
-
         }
 
 
@@ -31,6 +30,7 @@ public class BookReader {
 
         HashMap<String, Integer> sortedMapByValues = getSortedMap(list1);
 
+        System.out.println("Sorted words of book:");
         for (Map.Entry mp : sortedMapByValues.entrySet()
                 ) {
             System.out.println("word: " + mp.getKey() +
@@ -54,7 +54,7 @@ public class BookReader {
         List<Map.Entry<String, Integer>> list = new LinkedList(szekspirWords.entrySet());
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             @Override
-            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+            public int compare(Map.Entry<String, Integer> o2, Map.Entry<String, Integer> o1) {
                 return o1.getValue().compareTo(o2.getValue());
             }
         });
