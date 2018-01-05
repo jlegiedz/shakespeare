@@ -7,6 +7,8 @@ public class BookReader {
 
     public static void main(String[] args) throws Exception {
 
+
+
         File file = new File("/Users/asia/Desktop/szekspir.txt");
 
         Scanner scanner = new Scanner(file);
